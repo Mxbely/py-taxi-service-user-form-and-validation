@@ -114,7 +114,6 @@ def car_driver_update(request: HttpRequest, pk: int) -> HttpResponse:
     car = Car.objects.get(pk=pk)
     if user in car.drivers.all():
         car.drivers.remove(user)
-    elif user not in car.drivers.all():
+    else:
         car.drivers.add(user)
-    car.save()
     return redirect("taxi:car-detail", pk=pk)
